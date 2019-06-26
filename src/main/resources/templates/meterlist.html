@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mérőórák</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h2>Mérőórák</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Felhasználóhely</th>
+                    <th>Típus</th>
+                    <th>Gyári szám</th>
+                    <th>Hitelesség lejárta</th>
+                    <th></th>
+                </tr>
+                <tr th:each="meter : ${meterlist}">
+                    <td th:text="${meter.id}"></td>
+                    <td th:text="${meter.consumptionPlaceID}"></td>
+                    <td th:text="${meter.type}"></td>
+                    <td th:text="${meter.factoryNO}"></td>
+                    <td th:text="${meter.authenticationEndDate}"></td>
+                    <td><a th:href="${'/readinglist/' + meter.id}">Mérőállások</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

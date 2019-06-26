@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mérőállások</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h2>Mérőállások</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Érték</th>
+                    <th>Leolvasás napja</th>
+                    <th>Kép</th>
+                </tr>
+                <tr th:each="reading : ${readinglist}">
+                    <td th:text="${reading.id}"></td>
+                    <td th:text="${reading.meterActualValue}"></td>
+                    <td th:text="${reading.readingDate}"></td>
+                    <td th:text="${reading.imageURL}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <form th:action="@{'/readinglist/new'}" method = "post">
+                    <h3>Új mérőállás rögzítése</h3>
+                    <table>
+                        <tr hidden>
+                            <td>Mérőóra:</td>
+                            <td><input type="text" name=meterID th:value="${meterid}"></td>
+                        </tr>
+                        <tr>
+                            <td>Mérőállás:</td>
+                            <td><input type="text" name="value"></td>
+                        </tr>
+                        <tr>
+                            <td>Leolvasás napja:</td>
+                            <td><input type="date" name="readingDate"></td>
+                        </tr>
+                        <tr>
+                            <td>Kép:</td>
+                            <td><input type="text" name="value"></td>
+                        </tr>
+                    </table>
+                
+                    <div>
+                        <input type="submit" value="Rögzítés">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
