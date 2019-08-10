@@ -24,14 +24,14 @@ public class LoginController{
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@Valid LoginData loginData, BindingResult bindingResult)
+    public String login(@Valid LoginData loginData, BindingResult bindingResult) throws Exception
     {
         if(bindingResult.hasErrors()){
             return "/index";
         }
 
-        User user = loginService.getUser(loginData);
-        if(user != null) return "redirect:/meterlist/" + user.getID();
-        else return "/index";
+        User user = loginService.getUser(loginData.getEmail());
+        if(user != null && user.getPassword().equals(loginData.getPassword())) return "redirect:/meterlist/" + user.getID();
+        else return "redirect:/";
     }
 }

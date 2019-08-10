@@ -3,19 +3,29 @@
 <head>
     <title>Bejelentkezés</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{basic.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{button.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{header.css}">
 </head>
+<header>
+    <h1 id="programname">Mérőállás bejelentés</h1>
+    <a id="rllogo">Reverse-Logic</a>
+</header>
 <body>
     <div class="container">
-        <div>
-            <h1>Kérem jelentkezzen be</h1>
+        <div class="content">
+            <h3 id="csin">Kérem jelentkezzen be</h3>
             <form th:action= "@{'/login'}" method = "post" >
-                Email cím:<br>
-                <input type="text" name="email"><br>
-                Jelszó:<br>
-                <input type="password" name="password"><br>
-                <input type="submit" value="Bejelentkezés">
+                Email cím:
+                <input class="inpt" type="text" name="email"><br>
+                Jelszó:
+                <input class="inpt" type="password" name="password"><br>
+                <input class="btn" type="submit" value="Bejelentkezés">
               </form>
         </div>
     </div>
 </body>
+<footer>
+
+</footer>
 </html>

@@ -4,20 +4,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table
 public class ConsumptionPlace{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Long userID;
+    @ManyToOne
+    @JoinColumn
+    private User user;
 
-    public ConsumptionPlace(String name, Long userID)
+    public ConsumptionPlace(String name)
     {
         this.name = name;
-        this.userID = userID;
     }
 
     public ConsumptionPlace(){}
@@ -32,9 +37,14 @@ public class ConsumptionPlace{
         return this.name;
     }
 
-    public Long getUserID()
+    public User getUser()
     {
-        return this.userID;
+        return this.user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
     }
 
     @Override
