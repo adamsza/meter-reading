@@ -14,11 +14,11 @@
 </header>
 <body>
     <div class="container">
-        <div class="content">
+        <div class="content content2">
             <div class="row">
                 <div class="col-sm-3">
                     <h3>Új mérőállás rögzítése</h3>
-                    <form class=tble th:action="@{'/readinglist/new'}" method = "post">
+                    <form th:action="@{'/readinglist/new'}" method = "post" enctype="multipart/form-data">
                         
                         <table class="tble">
                             <tr hidden>
@@ -27,7 +27,7 @@
                             </tr>
                             <tr>
                                 <td>Mérőállás:</td>
-                                <td><input class="input" type="text" name="value"></td>
+                                <td><input class="input" type="number" name="value"></td>
                             </tr>
                             <tr>
                                 <td>Leolvasás napja:</td>
@@ -35,7 +35,7 @@
                             </tr>
                             <tr>
                                 <td>Kép:</td>
-                                <td><input class="input" type="text" name="value"></td>
+                                <td><input class="input" type="file" accept="image/*" name="file"></td>
                             </tr>
 
                             <td>
@@ -49,8 +49,8 @@
             </div>
         </div>
         
-        <div class="content" id="aside">
-                <h2>Mérőállások</h2>
+        <div class="content content2">
+                <h3>Mérőállások</h3>
                 <table class="table table-striped">
                     <tr>
                         <th>ID</th>
@@ -62,7 +62,7 @@
                         <td th:text="${reading.id}"></td>
                         <td th:text="${reading.meterActualValue}"></td>
                         <td th:text="${reading.readingDate}"></td>
-                        <td th:text="${reading.imageURL}"></td>
+                        <td><a th:href="${'/image/' + reading.imagename}">Megtekint</a></td>
                     </tr>
                 </table>
         </div>

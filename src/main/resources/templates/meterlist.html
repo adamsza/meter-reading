@@ -18,7 +18,6 @@
             <table class="table table-striped">
                 <tr>
                     <th>ID</th>
-                    <th>Felhasználóhely</th>
                     <th>Típus</th>
                     <th>Gyári szám</th>
                     <th>Hitelesség lejárta</th>
@@ -26,7 +25,6 @@
                 </tr>
                 <tr th:each="meter : ${meterlist}">
                     <td th:text="${meter.id}"></td>
-                    <td th:text="${meter.consumptionPlaceID}"></td>
                     <td th:text="${meter.type}"></td>
                     <td th:text="${meter.factoryNO}"></td>
                     <td th:text="${meter.authenticationEndDate}"></td>

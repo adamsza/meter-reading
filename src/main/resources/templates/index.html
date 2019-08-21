@@ -17,10 +17,10 @@
             <h3 id="csin">Kérem jelentkezzen be</h3>
             <form th:action= "@{'/login'}" method = "post" >
                 Email cím:
-                <input class="inpt" type="text" name="email"><br>
+                <input class="inpt" id="email" type="text" name="email"><br>
                 Jelszó:
-                <input class="inpt" type="password" name="password"><br>
-                <input class="btn" type="submit" value="Bejelentkezés">
+                <input class="inpt" id="password" type="password" name="password"><br>
+                <input class="btn" id="submit" type="submit" value="Bejelentkezés"  name="submit">
               </form>
         </div>
     </div>

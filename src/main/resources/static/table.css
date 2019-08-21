@@ -13,6 +13,7 @@ table tr:nth-child(even) {
 
 table tr:nth-child(odd) {
     background-color: #ffe1d6;
+    color: coral;
 }
 
 table th {
@@ -30,5 +31,13 @@ table th {
 .tble td{
     border: 0px;
     background-color: #ffb397;
-    text-align: left
+    text-align: left;
+    color: white;
+}
+
+@media (max-aspect-ratio: 3/4) {
+    .tble, .table {
+        width: 100%;
+        height: auto;
+    }
 }
