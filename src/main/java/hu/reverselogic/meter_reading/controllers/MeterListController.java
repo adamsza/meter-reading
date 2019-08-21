@@ -1,23 +1,22 @@
 package hu.reverselogic.meter_reading.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
+import hu.reverselogic.meter_reading.datas.CustomUserDetails;
+import hu.reverselogic.meter_reading.entities.Meter;
 import hu.reverselogic.meter_reading.services.MeterService;
 
 @Controller
 public class MeterListController{
 
-    private MeterService meterService;
-
     @Autowired
-    public void setMeterService(MeterService meterService)
-    {
-        this.meterService = meterService;
-    }
+    private MeterService meterService;
 
     public String listmeters(Model model)
     {
@@ -25,10 +24,12 @@ public class MeterListController{
         return "meterlist";
     }
 
-    @GetMapping("/meterlist/{id}")
-    public String listUserMeters(@PathVariable String id, Model model)
+    @GetMapping("/meterlist")
+    public String listUserMeters(Model model)
     {
-        model.addAttribute("meterlist", meterService.ListAllByID(Long.parseLong(id)));
+        CustomUserDetails userDetails = (CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Meter> meters = meterService.ListAllByID(userDetails.getID());
+        model.addAttribute("meterlist", meters);
         return "meterlist";
     }
     
