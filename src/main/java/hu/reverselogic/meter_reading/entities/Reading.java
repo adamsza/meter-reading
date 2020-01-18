@@ -1,35 +1,37 @@
 package hu.reverselogic.meter_reading.entities;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table
+@Table(name = "readings")
 public class Reading{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long meterId;
+    @ManyToOne
+    @JoinColumn
+    private Meter meter;
     private Float meterActualValue;
     private @Temporal(TemporalType.DATE) Date readingDate;
     private @Temporal(TemporalType.DATE) Date recordingDate;
-    private String imageURL;
+    private String imagename;
 
-    public Reading(Long meterId, Float meterActualValue, Date readingDate, String imageUrl)
+    public Reading(Float meterActualValue, Date readingDate, String imagename)
     {
-        this.meterId = meterId;
         this.meterActualValue = meterActualValue;
         this.readingDate = readingDate;
         this.recordingDate = new Date();
-        this.imageURL = imageUrl;
+        this.imagename = imagename;
     }
 
     public Reading() {
@@ -37,11 +39,6 @@ public class Reading{
 
 	public Long getId() {
         return this.id;
-    }
-
-    public Long getMeterId()
-    {
-        return this.meterId;
     }
 
     public Float getMeterActualValue() {
@@ -56,7 +53,20 @@ public class Reading{
         return this.recordingDate;
     }
 
-    public String getImageURL() {
-        return this.imageURL;
+    public Meter getMeter() {
+        return meter;
     }
+
+    public void setMeter(Meter meter) {
+        this.meter = meter;
+    }
+
+    public String getImagename() {
+        return imagename;
+    }
+
+    public void setImagename(String imagename) {
+        this.imagename = imagename;
+    }
+
 }

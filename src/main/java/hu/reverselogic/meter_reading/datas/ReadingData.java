@@ -4,16 +4,14 @@ public class ReadingData{
     private Long meterID;
     private Float value;
     private String readingDate;
-    private String imageURL;
 
     public ReadingData(){}
 
-    public ReadingData(Long meterID, Float value, String readingDate, String imageURL)
+    public ReadingData(Long meterID, Float value, String readingDate)
     {
         this.meterID = meterID;
         this.value = value;
         this. readingDate = readingDate;
-        this.imageURL = imageURL;
     }
 
     public void setMeterID(Long meterID)
@@ -46,13 +44,6 @@ public class ReadingData{
         return this.readingDate;
     }
 
-    public void setImageURL(String imageURL)
-    {
-        this.imageURL = imageURL;
-    }
 
-    public String getImageURL()
-    {
-        return this.imageURL;
-    }
+
 }
