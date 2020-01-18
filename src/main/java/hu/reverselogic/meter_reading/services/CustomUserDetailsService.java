@@ -1,7 +1,5 @@
 package hu.reverselogic.meter_reading.services;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,15 +13,20 @@ import hu.reverselogic.meter_reading.repositories.UserRepository;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+    private UserRepository uRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    public void setRepository(UserRepository uRepository)
+    {
+        this.uRepository = uRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> optionalUser = userRepository.findByEmail(email);
+        User user = uRepository.findTopByEmail(email);
 
-        optionalUser.orElseThrow(() -> new UsernameNotFoundException("Email address not found"));
-        return optionalUser.map(CustomUserDetails::new).get();
+        if(user != null) return new CustomUserDetails(user);
+        else throw new UsernameNotFoundException("Email address not found");
     }
 
 }
